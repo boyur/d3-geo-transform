@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { geoCentroid, geoMercator, geoPath } from 'd3-geo';
 import { select } from 'd3-selection';
-import 'd3-transition';
+import './transition-polyfill';
+
 import './App.css';
 
 const checkPath = (start, end) => {
-  console.log(start.length, end.length);
   if (start.length < end.length) {
     const newStart = start;
     end.forEach((point, i) => {
@@ -73,7 +73,6 @@ class App extends Component {
         const feature0 = polygon.geometry;
         const feature1 = end.features[i].geometry;
         const startEnd = checkPath(feature0.coordinates[0], feature1.coordinates[0]);
-        console.log(startEnd);
         const coordinates0 = startEnd.start.map(projection0);
         const coordinates1 = startEnd.end.map(projection1);
 
